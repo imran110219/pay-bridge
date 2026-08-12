@@ -1,0 +1,38 @@
+# Maven build output and reports
+**/target/
+*.class
+*.jar
+*.war
+*.ear
+*.log
+
+# JVM crash diagnostics
+hs_err_pid*
+replay_pid*
+
+# IDE metadata
+.idea/
+*.iml
+.project
+.classpath
+.settings/
+.factorypath
+
+# Eclipse Buildship / Maven wrapper local state
+.mvn/timing.properties
+
+# Keep Maven Wrapper binaries versioned when the wrapper is added.
+!.mvn/wrapper/maven-wrapper.jar
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Local environment and sensitive configuration
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.jks
