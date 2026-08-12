@@ -17,11 +17,11 @@ Application -> PayBridge API -> PaymentGatewayRegistry
 | Stripe | ✅ | ✅ | ✅ | ✅ | 🚧 | 🧪 |
 | bKash | ✅ | ✅ | ❌ | ❌ | ❌ | 🧪 |
 | SSLCommerz | ✅ | ✅ | ❌ | ❌ | ❌ | 🧪 |
-| PortWallet / PortPos | ✅ | ✅ | ✅ | ✅ | 🚧 | 🧪 |
+| PortWallet / PortPos | ✅ | ✅ | ✅ | ✅ | ❌ | 🧪 |
 
 All implemented flows are WireMock-tested; live credentials are deliberately not required for CI. bKash supports its URL Checkout grant-token → create → customer approval → execute → query sequence. SSLCommerz supports hosted-session creation and transaction query. Neither Bangladesh adapter currently exposes refunds or verified webhook handling. Their refund APIs require a bank/provider transaction identifier that V0.1's normalized `RefundRequest` does not yet carry; SSLCommerz IPN must additionally be validated server-to-server before fulfilment.
 
-PortWallet is now **PortPos**. The PortPos v2 adapter creates hosted invoices, retrieves invoice status, and submits full or partial refunds. It is configured with an application/secret key and generates the documented short-lived Bearer value for each request. Its IPN validation endpoint is documented but not yet exposed through PayBridge’s webhook abstraction.
+PortWallet is now **PortPos**. The PortPos v2 adapter creates hosted invoices, retrieves invoice status, and submits full or partial refunds. It is configured with an application/secret key and generates the documented short-lived Bearer value for each request. It requires a customer name, email, phone, and billing address (including state). Its IPN validation endpoint is documented but not yet exposed through PayBridge’s webhook abstraction.
 
 ## Quick start
 
@@ -56,6 +56,16 @@ paybridge:
 ```
 
 `PaymentRequest.customer` and its billing address are required for SSLCommerz session creation. bKash and SSLCommerz base URLs are configuration, not hardcoded API assumptions; use the current values assigned in merchant onboarding.
+
+PortPos is available as a direct adapter today; its Spring Boot property binding/auto-registration is planned. Configure it from environment-backed values, for example:
+
+```java
+var portPos = new PortPosPaymentGateway(new PortPosConfiguration(
+    System.getenv("PORTPOS_APP_KEY"), System.getenv("PORTPOS_SECRET_KEY"),
+    java.net.URI.create(System.getenv("PORTPOS_BASE_URI")),
+    java.net.URI.create("https://merchant.example/payments/portpos/return"),
+    java.net.URI.create("https://merchant.example/webhooks/portpos")));
+```
 
 ## Security and lifecycle
 
