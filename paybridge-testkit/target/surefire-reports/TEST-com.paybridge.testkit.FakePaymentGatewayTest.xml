@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" version="3.0.2" name="com.paybridge.testkit.FakePaymentGatewayTest" time="0.418" tests="2" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" version="3.0.2" name="com.paybridge.testkit.FakePaymentGatewayTest" time="0.265" tests="2" errors="0" skipped="0" failures="0">
   <properties>
     <property name="java.specification.version" value="23"/>
     <property name="sun.jnu.encoding" value="UTF-8"/>
@@ -11,7 +11,7 @@
     <property name="java.vm.specification.version" value="23"/>
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="sun.boot.library.path" value="/usr/lib/jvm/jdk-23.0.1/lib"/>
-    <property name="sun.java.command" value="/home/sadman/Documents/Repo/pay-bridge/paybridge-testkit/target/surefire/surefirebooter-20260812153221785_3.jar /home/sadman/Documents/Repo/pay-bridge/paybridge-testkit/target/surefire 2026-08-12T15-32-20_385-jvmRun1 surefire-20260812153221785_1tmp surefire_0-20260812153221785_2tmp"/>
+    <property name="sun.java.command" value="/home/sadman/Documents/Repo/pay-bridge/paybridge-testkit/target/surefire/surefirebooter-20260812161651791_3.jar /home/sadman/Documents/Repo/pay-bridge/paybridge-testkit/target/surefire 2026-08-12T16-16-50_635-jvmRun1 surefire-20260812161651791_1tmp surefire_0-20260812161651791_2tmp"/>
     <property name="jdk.debug" value="release"/>
     <property name="surefire.test.class.path" value="/home/sadman/Documents/Repo/pay-bridge/paybridge-testkit/target/test-classes:/home/sadman/Documents/Repo/pay-bridge/paybridge-testkit/target/classes:/home/sadman/Documents/Repo/pay-bridge/paybridge-spi/target/paybridge-spi-0.1.0-SNAPSHOT.jar:/home/sadman/Documents/Repo/pay-bridge/paybridge-core/target/paybridge-core-0.1.0-SNAPSHOT.jar:/tmp/paybridge-m2/com/fasterxml/jackson/core/jackson-annotations/2.18.2/jackson-annotations-2.18.2.jar:/tmp/paybridge-m2/org/junit/jupiter/junit-jupiter/5.11.4/junit-jupiter-5.11.4.jar:/tmp/paybridge-m2/org/junit/jupiter/junit-jupiter-api/5.11.4/junit-jupiter-api-5.11.4.jar:/tmp/paybridge-m2/org/opentest4j/opentest4j/1.3.0/opentest4j-1.3.0.jar:/tmp/paybridge-m2/org/junit/platform/junit-platform-commons/1.11.4/junit-platform-commons-1.11.4.jar:/tmp/paybridge-m2/org/apiguardian/apiguardian-api/1.1.2/apiguardian-api-1.1.2.jar:/tmp/paybridge-m2/org/junit/jupiter/junit-jupiter-params/5.11.4/junit-jupiter-params-5.11.4.jar:/tmp/paybridge-m2/org/junit/jupiter/junit-jupiter-engine/5.11.4/junit-jupiter-engine-5.11.4.jar:/tmp/paybridge-m2/org/junit/platform/junit-platform-engine/1.11.4/junit-platform-engine-1.11.4.jar:/tmp/paybridge-m2/org/assertj/assertj-core/3.27.3/assertj-core-3.27.3.jar:/tmp/paybridge-m2/net/bytebuddy/byte-buddy/1.15.11/byte-buddy-1.15.11.jar:"/>
     <property name="sun.cpu.endian" value="little"/>
@@ -26,7 +26,7 @@
     <property name="line.separator" value="&#10;"/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
-    <property name="surefire.real.class.path" value="/home/sadman/Documents/Repo/pay-bridge/paybridge-testkit/target/surefire/surefirebooter-20260812153221785_3.jar"/>
+    <property name="surefire.real.class.path" value="/home/sadman/Documents/Repo/pay-bridge/paybridge-testkit/target/surefire/surefirebooter-20260812161651791_3.jar"/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
     <property name="java.runtime.version" value="23.0.1+11-39"/>
     <property name="user.name" value="sadman"/>
@@ -53,6 +53,6 @@
     <property name="maven.repo.local" value="/tmp/paybridge-m2"/>
     <property name="java.class.version" value="67.0"/>
   </properties>
-  <testcase name="produces_deterministic_payment" classname="com.paybridge.testkit.FakePaymentGatewayTest" time="0.356"/>
-  <testcase name="simulates_decline" classname="com.paybridge.testkit.FakePaymentGatewayTest" time="0.007"/>
+  <testcase name="produces_deterministic_payment" classname="com.paybridge.testkit.FakePaymentGatewayTest" time="0.219"/>
+  <testcase name="simulates_decline" classname="com.paybridge.testkit.FakePaymentGatewayTest" time="0.002"/>
 </testsuite>

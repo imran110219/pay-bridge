@@ -1,7 +1,9 @@
 com/paybridge/core/model/PaymentRequest.class
 com/paybridge/core/model/PaymentMethod$Type.class
 com/paybridge/core/model/PaymentProvider.class
+com/paybridge/core/model/Customer.class
 com/paybridge/core/model/Refund$Status.class
+com/paybridge/core/model/BillingAddress.class
 com/paybridge/core/model/PaymentReference.class
 com/paybridge/core/model/Money.class
 com/paybridge/core/model/Payment.class

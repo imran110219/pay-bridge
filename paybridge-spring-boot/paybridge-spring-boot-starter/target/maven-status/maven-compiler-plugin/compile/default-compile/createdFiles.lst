@@ -1,3 +1,5 @@
-com/paybridge/spring/PayBridgeAutoConfiguration.class
 com/paybridge/spring/PayBridgeProperties$Stripe.class
 com/paybridge/spring/PayBridgeProperties.class
+com/paybridge/spring/PayBridgeAutoConfiguration.class
+com/paybridge/spring/PayBridgeProperties$Bkash.class
+com/paybridge/spring/PayBridgeProperties$Sslcommerz.class

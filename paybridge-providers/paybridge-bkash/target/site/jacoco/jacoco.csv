@@ -1,0 +1,4 @@
+GROUP,PACKAGE,CLASS,INSTRUCTION_MISSED,INSTRUCTION_COVERED,BRANCH_MISSED,BRANCH_COVERED,LINE_MISSED,LINE_COVERED,COMPLEXITY_MISSED,COMPLEXITY_COVERED,METHOD_MISSED,METHOD_COVERED
+paybridge-bkash,com.paybridge.bkash,BkashPaymentGateway,184,303,32,12,3,6,26,7,4,7
+paybridge-bkash,com.paybridge.bkash,BkashConfiguration,13,69,2,4,1,1,3,2,1,1
+paybridge-bkash,com.paybridge.bkash,BkashPaymentGateway.Token,0,9,0,0,0,1,0,1,0,1

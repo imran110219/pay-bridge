@@ -1,3 +1,4 @@
 package com.paybridge.sslcommerz;
-/** Boundary only; live API/IPN implementation awaits merchant sandbox validation. */
-public record SslCommerzConfiguration(String storeId, String storePassword, boolean sandbox) { @Override public String toString(){return "SslCommerzConfiguration[storeId="+storeId+", storePassword=REDACTED, sandbox="+sandbox+"]";} }
+import java.net.URI; import java.util.Objects;
+/** Server-side SSLCommerz credentials and return/IPN endpoints; all URLs must be merchant-controlled HTTPS endpoints in production. */
+public record SslCommerzConfiguration(String storeId,String storePassword,URI baseUri,URI successUri,URI failureUri,URI cancelUri,URI ipnUri) { public SslCommerzConfiguration { if(storeId==null||storeId.isBlank()||storePassword==null||storePassword.isBlank())throw new IllegalArgumentException("store credentials are required");Objects.requireNonNull(baseUri);Objects.requireNonNull(successUri);Objects.requireNonNull(failureUri);Objects.requireNonNull(cancelUri);Objects.requireNonNull(ipnUri); } @Override public String toString(){return "SslCommerzConfiguration[storeId="+storeId+", storePassword=REDACTED, baseUri="+baseUri+"]";} }

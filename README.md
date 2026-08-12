@@ -14,10 +14,10 @@ Application -> PayBridge API -> PaymentGatewayRegistry
 | Provider | Payment | Query | Refund | Partial refund | Webhook | Sandbox |
 |---|---:|---:|---:|---:|---:|---:|
 | Stripe | ✅ | ✅ | ✅ | ✅ | 🚧 | 🧪 |
-| bKash | 🚧 | 🚧 | 🚧 | 🚧 | 🚧 | 🚧 |
-| SSLCommerz | 🚧 | 🚧 | 🚧 | 🚧 | 🚧 | 🧪 |
+| bKash | ✅ | ✅ | ❌ | ❌ | ❌ | 🧪 |
+| SSLCommerz | ✅ | ✅ | ❌ | ❌ | 🚧 | 🧪 |
 
-Stripe uses the documented Payment Intents REST endpoints and is HTTP-tested locally; live credentials are deliberately not required for CI. Bangladesh provider configurations are boundaries only, not invented integrations.
+Stripe is HTTP-tested locally. bKash implements the documented URL Checkout grant-token/create/execute/query flow; SSLCommerz implements hosted session creation and transaction query. Both are WireMock-tested, but live credentials are deliberately not required for CI. Refunds remain unavailable because both providers require a provider transaction identifier that V0.1's normalized `RefundRequest` does not yet carry.
 
 ## Quick start
 

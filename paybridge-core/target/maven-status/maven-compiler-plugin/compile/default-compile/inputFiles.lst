@@ -1,5 +1,7 @@
 /home/sadman/Documents/Repo/pay-bridge/paybridge-core/src/main/java/com/paybridge/core/error/PaymentErrorCode.java
 /home/sadman/Documents/Repo/pay-bridge/paybridge-core/src/main/java/com/paybridge/core/error/PaymentException.java
+/home/sadman/Documents/Repo/pay-bridge/paybridge-core/src/main/java/com/paybridge/core/model/BillingAddress.java
+/home/sadman/Documents/Repo/pay-bridge/paybridge-core/src/main/java/com/paybridge/core/model/Customer.java
 /home/sadman/Documents/Repo/pay-bridge/paybridge-core/src/main/java/com/paybridge/core/model/IdempotencyKey.java
 /home/sadman/Documents/Repo/pay-bridge/paybridge-core/src/main/java/com/paybridge/core/model/Money.java
 /home/sadman/Documents/Repo/pay-bridge/paybridge-core/src/main/java/com/paybridge/core/model/Payment.java
