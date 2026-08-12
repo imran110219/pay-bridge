@@ -1,0 +1,5 @@
+#surefire_3
+#Wed Aug 12 17:11:49 GMT+06:00 2026
+basedir=/home/sadman/Documents/Repo/pay-bridge/paybridge-providers/paybridge-sslcommerz
+localRepository=/tmp/paybridge-m2
+maven.repo.local=/tmp/paybridge-m2

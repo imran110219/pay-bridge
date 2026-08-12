@@ -23,6 +23,17 @@ All implemented flows are WireMock-tested; live credentials are deliberately not
 
 PortWallet is now **PortPos**. The PortPos v2 adapter creates hosted invoices, retrieves invoice status, and submits full or partial refunds. It is configured with an application/secret key and generates the documented short-lived Bearer value for each request. It requires a customer name, email, phone, and billing address (including state). Its IPN validation endpoint is documented but not yet exposed through PayBridge’s webhook abstraction.
 
+## Modules
+
+| Module | Responsibility |
+|---|---|
+| `paybridge-core` | Framework-independent payment domain and normalized errors |
+| `paybridge-spi` | Gateway port, capability model, and registry |
+| `paybridge-webhooks` | Provider-neutral verified webhook contracts |
+| `paybridge-testkit` | Deterministic in-memory gateway for application tests |
+| `paybridge-stripe`, `paybridge-bkash`, `paybridge-sslcommerz`, `paybridge-portpos` | Isolated provider adapters |
+| `paybridge-spring-boot-starter` | Spring Boot registration for Stripe, bKash, and SSLCommerz |
+
 ## Quick start
 
 ```java
