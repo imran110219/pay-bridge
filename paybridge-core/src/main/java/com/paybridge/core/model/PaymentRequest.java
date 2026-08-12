@@ -1,0 +1,4 @@
+package com.paybridge.core.model;
+import java.util.Map;
+import java.util.Objects;
+public record PaymentRequest(Money amount, String merchantReference, String description, PaymentMethod paymentMethod, IdempotencyKey idempotencyKey, Map<String, String> metadata) { public PaymentRequest { Objects.requireNonNull(amount); if (merchantReference == null || merchantReference.isBlank()) throw new IllegalArgumentException("merchantReference is required"); Objects.requireNonNull(idempotencyKey); metadata = metadata == null ? Map.of() : Map.copyOf(metadata); } }

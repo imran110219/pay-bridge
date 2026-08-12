@@ -1,0 +1,3 @@
+# PayBridge contributor guide
+
+Keep `paybridge-core` framework- and provider-independent. Core must not depend on Spring or provider modules, and provider DTOs must never cross a provider module boundary. Do not store, accept, log, or serialize raw card data, CVV/CVC, magnetic-stripe data, tokens, or secrets. Official provider documentation is the source of truth: do not infer endpoints, signatures, or capabilities. Every implemented provider behavior needs tests; do not claim unsupported capability. Preserve public API compatibility deliberately, document public changes, and run `mvn clean verify` before completion.

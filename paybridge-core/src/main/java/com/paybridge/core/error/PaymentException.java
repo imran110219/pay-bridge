@@ -1,0 +1,4 @@
+package com.paybridge.core.error;
+import com.paybridge.core.model.PaymentProvider;
+/** Safe normalized exception; provider payloads and credentials are intentionally excluded. */
+public final class PaymentException extends RuntimeException { private final PaymentErrorCode code; private final PaymentProvider provider; private final String providerCode; private final boolean retryable; public PaymentException(PaymentErrorCode code, PaymentProvider provider, String providerCode, boolean retryable, String message) { super(message); this.code=code; this.provider=provider; this.providerCode=providerCode; this.retryable=retryable; } public PaymentErrorCode code(){return code;} public PaymentProvider provider(){return provider;} public String providerCode(){return providerCode;} public boolean retryable(){return retryable;} }

@@ -1,0 +1,5 @@
+# Security model
+
+PayBridge never receives raw card numbers, CVV/CVC, magnetic stripe, or authentication data. The public API accepts only provider-generated tokens or hosted-checkout instructions. Credentials are injected at runtime and safe `toString()` methods redact secrets. Telemetry/logging must include only payment/provider references and safe error codes.
+
+Webhook adapters must verify signatures before parsing/dispatching, enforce provider timestamp windows, deduplicate event IDs in an application-owned store, tolerate reordering, and reject malformed/unknown authenticity data. A failed signature is never accepted.

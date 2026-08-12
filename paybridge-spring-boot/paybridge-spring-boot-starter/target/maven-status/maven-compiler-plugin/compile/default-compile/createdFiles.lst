@@ -1,0 +1,3 @@
+com/paybridge/spring/PayBridgeAutoConfiguration.class
+com/paybridge/spring/PayBridgeProperties$Stripe.class
+com/paybridge/spring/PayBridgeProperties.class

@@ -1,0 +1,3 @@
+package com.paybridge.spring;
+import org.springframework.boot.context.properties.ConfigurationProperties;
+@ConfigurationProperties("paybridge") public class PayBridgeProperties { private Stripe stripe=new Stripe(); public Stripe getStripe(){return stripe;} public void setStripe(Stripe stripe){this.stripe=stripe;} public static class Stripe { private boolean enabled; private String secretKey; public boolean isEnabled(){return enabled;} public void setEnabled(boolean enabled){this.enabled=enabled;} public String getSecretKey(){return secretKey;} public void setSecretKey(String secretKey){this.secretKey=secretKey;} } }
