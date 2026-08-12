@@ -4,4 +4,6 @@ The Maven modules enforce dependency direction: `core` contains immutable domain
 
 Provider adapters follow domain → mapper/client → provider API. They expose no provider DTOs. Unsupported capability is explicit, rather than a pretend common feature. An application creates an instance-scoped `PaymentGatewayRegistry`; no global registry exists.
 
-The core has no persistence or distributed idempotency dependency. `IdempotencyKey` always travels with create/refund calls, while a future application adapter can persist request/result pairs and provider adapters forward the key where supported.
+The core has no persistence or distributed idempotency dependency. `IdempotencyKey` always travels with create/refund calls, while a future application adapter can persist request/result pairs and provider adapters forward the key where supported. The SPI includes `CONFIRM_PAYMENT` for hosted flows where a customer approves externally and the provider requires a separate execution call; bKash is the first use of this capability.
+
+`PaymentRequest` may contain an immutable `Customer` and `BillingAddress`. They are optional in the core but required by the SSLCommerz hosted-session adapter because its public session contract requires customer data. Provider metadata holds only safe operational references, such as an SSLCommerz session key or bKash transaction identifier; it is not a substitute for a durable merchant payment record.

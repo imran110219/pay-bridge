@@ -5,8 +5,9 @@
 ```
 Application -> PayBridge API -> PaymentGatewayRegistry
                               |--> Stripe --> Stripe API
-                              |--> bKash (scaffold)
-                              `--> SSLCommerz (scaffold)
+                              |--> bKash URL Checkout --> bKash API
+                              |--> SSLCommerz Hosted Checkout --> SSLCommerz API
+                              `--> PortPos Hosted Invoice --> PortPos API
 ```
 
 ## Status and capabilities
@@ -15,9 +16,12 @@ Application -> PayBridge API -> PaymentGatewayRegistry
 |---|---:|---:|---:|---:|---:|---:|
 | Stripe | ✅ | ✅ | ✅ | ✅ | 🚧 | 🧪 |
 | bKash | ✅ | ✅ | ❌ | ❌ | ❌ | 🧪 |
-| SSLCommerz | ✅ | ✅ | ❌ | ❌ | 🚧 | 🧪 |
+| SSLCommerz | ✅ | ✅ | ❌ | ❌ | ❌ | 🧪 |
+| PortWallet / PortPos | ✅ | ✅ | ✅ | ✅ | 🚧 | 🧪 |
 
-Stripe is HTTP-tested locally. bKash implements the documented URL Checkout grant-token/create/execute/query flow; SSLCommerz implements hosted session creation and transaction query. Both are WireMock-tested, but live credentials are deliberately not required for CI. Refunds remain unavailable because both providers require a provider transaction identifier that V0.1's normalized `RefundRequest` does not yet carry.
+All implemented flows are WireMock-tested; live credentials are deliberately not required for CI. bKash supports its URL Checkout grant-token → create → customer approval → execute → query sequence. SSLCommerz supports hosted-session creation and transaction query. Neither Bangladesh adapter currently exposes refunds or verified webhook handling. Their refund APIs require a bank/provider transaction identifier that V0.1's normalized `RefundRequest` does not yet carry; SSLCommerz IPN must additionally be validated server-to-server before fulfilment.
+
+PortWallet is now **PortPos**. The PortPos v2 adapter creates hosted invoices, retrieves invoice status, and submits full or partial refunds. It is configured with an application/secret key and generates the documented short-lived Bearer value for each request. Its IPN validation endpoint is documented but not yet exposed through PayBridge’s webhook abstraction.
 
 ## Quick start
 
@@ -26,7 +30,32 @@ var gateway = new StripePaymentGateway(new StripeConfiguration(System.getenv("ST
 var payment = gateway.createPayment(new PaymentRequest(Money.of("12.50", "USD"), "order-42", "Order 42", new PaymentMethod(PaymentMethod.Type.PROVIDER_TOKEN, "pm_provider_token"), new IdempotencyKey("order-42-create"), Map.of()));
 ```
 
-In Spring Boot, include the starter and configure `paybridge.stripe.enabled=true` and `paybridge.stripe.secret-key=${STRIPE_SECRET_KEY}`; inject `PaymentGatewayRegistry` and select `registry.get(PaymentProvider.STRIPE)`.
+For bKash, create a hosted checkout payment and redirect the customer to `clientActionUrl`; after the customer returns to your callback, call `gateway.confirm(reference)`, then query if needed. SSLCommerz similarly returns a `clientActionUrl`; treat its return URL as informational and query/validate server-side before fulfilment.
+
+In Spring Boot, include the starter, enable one or more configured gateways, inject `PaymentGatewayRegistry`, and select a gateway by provider. For example:
+
+```yaml
+paybridge:
+  bkash:
+    enabled: true
+    app-key: ${BKASH_APP_KEY}
+    app-secret: ${BKASH_APP_SECRET}
+    username: ${BKASH_USERNAME}
+    password: ${BKASH_PASSWORD}
+    base-uri: https://checkout.sandbox.bka.sh
+    callback-uri: https://merchant.example/payments/bkash/callback
+  sslcommerz:
+    enabled: true
+    store-id: ${SSLCOMMERZ_STORE_ID}
+    store-password: ${SSLCOMMERZ_STORE_PASSWORD}
+    base-uri: https://sandbox.sslcommerz.com
+    success-uri: https://merchant.example/payments/ssl/success
+    failure-uri: https://merchant.example/payments/ssl/failure
+    cancel-uri: https://merchant.example/payments/ssl/cancel
+    ipn-uri: https://merchant.example/webhooks/sslcommerz
+```
+
+`PaymentRequest.customer` and its billing address are required for SSLCommerz session creation. bKash and SSLCommerz base URLs are configuration, not hardcoded API assumptions; use the current values assigned in merchant onboarding.
 
 ## Security and lifecycle
 
@@ -34,6 +63,6 @@ No raw card data belongs in PayBridge. Use a provider token or hosted checkout. 
 
 ## Build, test, contribute
 
-Run `mvn clean verify` with Java 21. `paybridge-testkit` supplies a deterministic `FakePaymentGateway` for application tests. See [provider development](docs/PROVIDER_DEVELOPMENT.md), [architecture](docs/ARCHITECTURE.md), [roadmap](docs/ROADMAP.md), and [contributing](CONTRIBUTING.md).
+Run `mvn clean verify` with Java 21 (the published bytecode target). `paybridge-testkit` supplies a deterministic `FakePaymentGateway` for application tests. See [provider development](docs/PROVIDER_DEVELOPMENT.md), [architecture](docs/ARCHITECTURE.md), [roadmap](docs/ROADMAP.md), and [contributing](CONTRIBUTING.md).
 
 Apache-2.0 is included without an ownership notice; add the project owner/copyright notice before release.
