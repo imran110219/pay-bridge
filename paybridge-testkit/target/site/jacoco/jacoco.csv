@@ -1,4 +1,0 @@
-GROUP,PACKAGE,CLASS,INSTRUCTION_MISSED,INSTRUCTION_COVERED,BRANCH_MISSED,BRANCH_COVERED,LINE_MISSED,LINE_COVERED,COMPLEXITY_MISSED,COMPLEXITY_COVERED,METHOD_MISSED,METHOD_COVERED
-paybridge-testkit,com.paybridge.testkit,FakePaymentGateway.Scenario,0,33,0,0,0,1,0,1,0,1
-paybridge-testkit,com.paybridge.testkit,FakePaymentGateway,51,83,4,6,0,1,7,6,3,5
-paybridge-testkit,com.paybridge.testkit,FakePaymentGateway.Builder,0,21,0,0,0,1,0,4,0,4
